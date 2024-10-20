@@ -1,0 +1,1 @@
+https://github.com/lr2t9iz/wazuh-stuff/tree/main/rules
