@@ -1,0 +1,23 @@
+id: 36bcc5f7-11f0-4498-a724-bd5bb747bbbd
+status: experimental
+title: Low Disk Space
+description: Detects low disk space warnings from system logs. Monitoring disk space is crucial to prevent system failures and ensure continuous operation.
+date: 2024/07/18
+author: lr2t9iz
+references:
+  - https://discuss.elastic.co/t/creating-alert-for-disk-space-usage/151474/4
+  - https://documentation.wazuh.com/current/user-manual/capabilities/command-monitoring/use-cases/disk-space-utilization.html#id5
+tags:
+  - disk.capacity
+logsource:
+  product: siem
+  category: metrics
+detection:
+  selection:
+    Capacity: "> 90%"
+  condition: selection
+fields:
+  - ComputerName
+falsepositives:
+  - Unknown
+level: high

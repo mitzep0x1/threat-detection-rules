@@ -1,0 +1,24 @@
+id: f7f54497-47ac-4731-b17f-b55359b69408
+status: experimental
+title: Event Lack
+description: Detects the absence of specific firewall event types over a given period. This can indicate potential issues with logging, network connectivity, or system health.
+date: 2024/07/19
+author: lr2t9iz
+references:
+  - https://gallery.logrhythm.com/use-cases/alerting-on-the-absence-of-an-event-use-case.pdf
+tags:
+  - logging.health
+logsource:
+  product: siem
+  category: monitoring
+detection:
+  selection:
+    EventCategory: "Firewall"
+  timeframe: "15m"
+  condition: not selection
+fields:
+  - ComputerName
+falsepositives:
+  - Network issues
+  - System maintenance periods
+level: high

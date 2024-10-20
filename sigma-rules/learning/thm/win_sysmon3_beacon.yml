@@ -1,0 +1,20 @@
+title: Alert on Suspicious Beacon Network Connections
+id: network_connections_criteria_sysmon
+description: |
+  Detects network connections with specific criteria in Sysmon logs: remote IP, remote port, size, and frequency.
+references:
+  - https://attack.mitre.org/tactics/TA0011/
+tags:
+  - attack.ta0011
+  - sysmon
+detection:
+  selection:
+    EventID: 3
+    RemoteIP: '*'
+    RemotePort: '*'
+    Size: 97
+    Frequency: 1800 seconds
+  condition: selection
+falsepositives:
+  - Legitimate network traffic may match this criteria.
+level: high

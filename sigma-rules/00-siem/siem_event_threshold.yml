@@ -1,0 +1,25 @@
+id: b77cddb4-f29e-4c1d-9862-471641e645f1
+status: experimental
+title: High Event Volume from Specific Source
+description: Detects when the number of events  from a specific source exceeds a specified threshold within a given timeframe, indicating potential anomalies or issues.
+date: 2024/09/12
+author: lr2t9iz
+references:
+  - https://discuss.elastic.co/t/threshold-security-rule/362464/9
+  - https://help.sumologic.com/docs/cse/rules/write-threshold-rule/
+tags:
+  - anomaly.detection
+logsource:
+  product: siem
+  category: monitoring
+detection:
+  selection:
+    Source: "events" # define the event source
+    EventCount: "> N" # define threshold
+  timeframe: "30m"
+  condition: selection
+fields:
+  - Source
+falsepositives:
+  - Unknown
+level: medium

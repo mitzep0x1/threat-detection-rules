@@ -1,0 +1,24 @@
+title: Alert on Potential Exfiltration through Process Creation
+id: sysmon_process_creation_command_line
+description: |
+  Detects process creation events with specific criteria: process name, and command line containing ">> %temp%\exfiltr8.log".
+references:
+  - https://attack.mitre.org/tactics/TA0007/
+  - https://attack.mitre.org/tactics/TA0009/
+  - https://attack.mitre.org/tactics/TA0010/
+tags:
+  - attack.ta0007
+  - attack.ta0009
+  - attack.ta0010
+  - sysmon
+detection:
+  selection:
+    EventID: 1
+    Image:
+    - '*\cmd.exe'
+    - '*\powershell.exe'
+    CommandLine: '*>> %temp%\exfiltr8.log*'
+  condition: selection
+falsepositives:
+  - Legitimate use of cmd.exe or powershell.exe to append data to the %temp% folder.
+level: high
