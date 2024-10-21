@@ -1,0 +1,2 @@
+## lazagne detection - hello world!
+-a always,exit -F arch=b64 -S execve -F key=lazagne-detect -F exe=/usr/bin/*lazagne* -k lazagne-detect
