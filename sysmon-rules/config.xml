@@ -1,0 +1,8 @@
+<Sysmon schemaversion="4.50">
+  <EventFiltering>
+    <!-- mimikatz.exe process detection - hello world! -->
+    <ProcessCreate onmatch="include">
+      <Image condition="contains">mimikatz.exe</Image>
+    </ProcessCreate>
+  </EventFiltering>
+</Sysmon>
