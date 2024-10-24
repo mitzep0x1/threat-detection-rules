@@ -1,8 +1,15 @@
-<Sysmon schemaversion="4.50">
+<Sysmon schemaversion="4.40">
   <EventFiltering>
-    <!-- mimikatz.exe process detection - hello world! -->
-    <ProcessCreate onmatch="include">
-      <Image condition="contains">mimikatz.exe</Image>
-    </ProcessCreate>
+    <RuleGroup name="ProcessCreateRules" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Image condition="contains">mimikatz.exe</Image> <!-- simple rule -->
+
+        <!-- rule with metadata -->
+        <Rule name="System Network Connections Discovery" groupRelation="or">
+          <OriginalFileName name="technique_id=T1049,technique_name=System Network Connections Discovery" condition="is">arp.exe</OriginalFileName>
+        </Rule>
+
+      </ProcessCreate>
+    </RuleGroup>
   </EventFiltering>
 </Sysmon>
