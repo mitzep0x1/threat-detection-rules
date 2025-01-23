@@ -1,3 +1,2 @@
-# CyberTreat Detection Rules & Queries
+# CyberThreat Detection Rules
 
-Rules & Queries - CyberThreat (Detection|Hunting)
