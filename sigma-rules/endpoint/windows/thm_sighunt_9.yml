@@ -1,0 +1,10 @@
+# Image: ransom.exe
+# Target Filename: *.huntme
+
+title: Ransomware File Encryption
+description: suspicious_mshta_execution
+detection:
+    selection:
+        EventID: 11
+        TargetFilename|endswith : '.huntme'
+    condition: selection

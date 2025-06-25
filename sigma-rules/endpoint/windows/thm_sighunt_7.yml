@@ -1,0 +1,13 @@
+# Image: 7z.exe
+# Command Line: 7z a exfil.zip * -p
+
+title: 7-zip Collection
+description: 7z_suspicious_archive
+detection:
+    selection:
+        EventID: 1
+        Image|endswith: '7z.exe'
+        CommandLine|contains|all:
+        - ' a '
+        - '-p'
+    condition: selection

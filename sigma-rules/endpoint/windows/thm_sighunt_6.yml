@@ -1,0 +1,13 @@
+# Image: reg.exe
+# Command Line: reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce" /v MicrosoftUpdate /t REG_SZ /d "C:\Windows\System32\cmdd.exe"
+
+title: RunOnce Persistence
+description: runone_persistence
+detection:
+    selection:
+        EventID: 1
+        Image|endswith: 'reg.exe'
+        CommandLine|contains|all:
+        - ' add '
+        - 'RunOnce'
+condition: selection

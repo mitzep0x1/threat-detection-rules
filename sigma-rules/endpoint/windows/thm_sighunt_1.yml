@@ -1,0 +1,12 @@
+# Parent Image: chrome.exe
+# Image: mshta.exe
+# Command Line: C:\Windows\SysWOW64\mshta.exe C:\Users\victim\Downloads\update.hta
+
+title: HTA payloay
+description: suspicious_mshta_execution
+detection:
+    selection:
+        EventID: 1
+        ParentImage|endswith: 'chrome.exe'
+        Image|endswith: 'mshta.exe'
+    condition: selection

