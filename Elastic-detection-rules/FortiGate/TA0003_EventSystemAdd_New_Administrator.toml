@@ -1,0 +1,22 @@
+
+[rule]
+type = "query"
+index = [".ds-logs-fortinet_fortigate.log-*"]
+language = "kuery"
+query = '''
+fortinet.firewall.subtype:"system" AND fortinet.firewall.action: "Add" AND fortinet.firewall.cfgpath: ("system.admin" OR "system.api-user" OR "system.sso-admin")
+'''
+name = "FortiGate EventSystemAdd New Administrator"
+description = "Detects when a new administrator account is created on the FortiGate system."
+severity = "high"
+risk_score = 73
+tags = ["Tactic: Persistence"]
+references = ["https://filestore.fortinet.com/docs.fortinet.com/fsiem/Public_Resource_Access/7_3_0/rules/PH_RULE_FGT_Admin_User_Added.htm"]
+author = ['mitzep0x1']
+
+[[rule.threat]]
+framework = "MITRE ATT&CK"
+[rule.threat.tactic]
+id = "TA0003"
+name = "Persistence"
+reference = "https://attack.mitre.org/tactics/TA0003/"
