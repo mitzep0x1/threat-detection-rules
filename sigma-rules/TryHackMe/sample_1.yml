@@ -1,0 +1,19 @@
+title: Modification of Windows Defender Real-Time Protection
+id: windows_registry_defender_disable_realtime
+description: |
+  Detects modifications or creations of the Windows Defender Real-Time Protection DisableRealtimeMonitoring registry value.
+references:
+  - https://attack.mitre.org/tactics/TA0005/
+tags:
+  - attack.ta0005
+  - sysmon
+detection:
+  selection:
+    EventID: 4663
+    ObjectType: Key
+    ObjectName: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection'
+    NewValue: 'DisableRealtimeMonitoring=1'
+  condition: selection
+falsepositives:
+  - Legitimate changes to Windows Defender settings.
+level: high
