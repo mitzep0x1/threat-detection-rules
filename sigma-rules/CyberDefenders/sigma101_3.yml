@@ -1,0 +1,10 @@
+# concerns are raised due to its indication of a defense evasion tactic.
+
+title: Detect PowerShell CLM Setting Changed
+description: Detect PowerShell CLM Setting Changed
+detection:
+    selection:
+        EventID: 12
+        EventType: 'DeleteValue'
+        TargetObject|endswith: "PSLockdownPolicy"
+    condition: selection

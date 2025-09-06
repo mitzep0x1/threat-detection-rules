@@ -1,0 +1,8 @@
+# File Deletion Detection:  Create a Sigma rule to detect event-log clearing. Validate it using Chainsaw with the historical logs you have. What is the timestamp of the earliest match?
+
+title: File Deletion Detection
+description: File Deletion Detection
+detection:
+    selection:
+        EventID: 1102
+    condition: selection

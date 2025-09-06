@@ -1,0 +1,11 @@
+#  team identified a process hollowing technique being used by a malicious executable.
+
+title: Detect WmiPrvSE.exe rocess hollowing
+description: Detect WmiPrvSE.exe rocess hollowing
+detection:
+    selection:
+        Image|endswith: 'WmiPrvSE.exe'
+        CommandLine|contains|all:
+          - '-secured'
+          - '-Embedding'
+    condition: selection

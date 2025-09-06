@@ -1,0 +1,13 @@
+# analysts identified a malicious process running on one of the systems.
+
+title: Detect wscript Execution
+description: Detect wscript Execution + powershell
+detection:
+    selection:
+        Image|endswith: 'wscript.exe'
+        ParentImage|endswith: 'explorer.exe'
+        CommandLine|contains|all:
+          - 'powershell'
+          - '-exec'
+          - 'bypass'
+    condition: selection
