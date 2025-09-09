@@ -1,0 +1,29 @@
+
+[rule]
+type = "query"
+index = [".fleet-agents-*"]
+language = "kuery"
+query = '''
+last_checkin > "now-1h" AND last_checkin < "now-10m" AND NOT unenrolled_at:*
+'''
+name = "Elastic Agent Disconnected"
+description = "Detects when a SIEM agent stops sending logs for more than 10 minutes."
+severity = "high"
+risk_score = 73
+tags = ["CustomDetectionRule"]
+references = ["https://github.com/netero1010/EDRSilencer"]
+author = ["mitzep0x1"]
+timestamp_override = "last_checkin"
+
+[[rule.threat]]
+framework = "MITRE ATT&CK"
+
+[rule.threat.tactic]
+id = "TA0005"
+name = "Defense Evasion"
+reference = "https://attack.mitre.org/tactics/TA0005"
+
+[[rule.threat.technique]]
+id = "T1562"
+name = "Impair Defenses"
+reference = "https://attack.mitre.org/techniques/T1562"
