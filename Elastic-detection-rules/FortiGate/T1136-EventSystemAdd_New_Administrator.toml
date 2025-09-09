@@ -10,13 +10,24 @@ name = "FortiGate EventSystemAdd New Administrator"
 description = "Detects when a new administrator account is created on the FortiGate system."
 severity = "high"
 risk_score = 73
-tags = ["Tactic: Persistence"]
+tags = ["CustomDetectionRule"]
 references = ["https://filestore.fortinet.com/docs.fortinet.com/fsiem/Public_Resource_Access/7_3_0/rules/PH_RULE_FGT_Admin_User_Added.htm"]
 author = ['mitzep0x1']
 
 [[rule.threat]]
 framework = "MITRE ATT&CK"
+
 [rule.threat.tactic]
 id = "TA0003"
 name = "Persistence"
 reference = "https://attack.mitre.org/tactics/TA0003/"
+
+[[rule.threat.technique]]
+id = "T1136"
+name = "Create Account"
+reference = "https://attack.mitre.org/techniques/T1136/"
+
+[[rule.threat.technique.subtechnique]]
+id = "T1136.001"
+name = "Local Account"
+reference = "https://attack.mitre.org/techniques/T1136/001/"
