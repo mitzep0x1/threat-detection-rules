@@ -1,0 +1,28 @@
+
+[rule]
+type = "query"
+index = [".ds-logs-trend_micro_vision_one.detection-*"]
+language = "kuery"
+query = '''
+trend_micro_vision_one.detection.event_name:"BEHAVIORAL_VIOLATION"
+'''
+name = "TrendMicro VisionOne Detection BEHAVIORAL_VIOLATION"
+description = "Detects VisionOne BEHAVIORAL_VIOLATION events."
+severity = "medium"
+risk_score = 47
+tags = ["CustomDetectionRule"]
+references = [""]
+author = ["mitzep0x1"]
+
+[[rule.threat]]
+framework = "MITRE ATT&CK"
+
+[rule.threat.tactic]
+id = "TA0002"
+name = "Execution"
+reference = "https://attack.mitre.org/tactics/TA0002/"
+
+[[rule.threat.technique]]
+id = "T1204"
+name = "User Execution"
+reference = "https://attack.mitre.org/techniques/T1204"
