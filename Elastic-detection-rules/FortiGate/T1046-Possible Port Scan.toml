@@ -4,7 +4,7 @@ type = "threshold"
 index = [".ds-logs-fortinet_fortigate.log-*"]
 language = "kuery"
 query = '''
-destination.ip:*
+destination.port:*
 '''
 name = "FortiGate Possible Port Scan"
 description = "Detects potential port scanning activity when a single source IP attempts to connect to multiple destination ports within a short timeframe."
