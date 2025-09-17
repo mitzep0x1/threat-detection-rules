@@ -1,0 +1,36 @@
+
+[rule]
+type = "threshold"
+index = [".ds-logs-fortinet_fortigate.log-*"]
+language = "kuery"
+query = '''
+destination.ip:*
+'''
+name = "FortiGate Possible Port Scan"
+description = "Detects potential port scanning activity when a single source IP attempts to connect to multiple destination ports within a short timeframe."
+severity = "medium"
+risk_score = 47
+tags = ["CustomDetectionRule"]
+references = [""]
+author = ["mitzep0x1"]
+
+[rule.threshold]
+field = ["source.ip", "destination.port"]
+value = 1
+
+[[rule.threshold.cardinality]]
+field = "destination.port"
+value = 100
+
+[[rule.threat]]
+framework = "MITRE ATT&CK"
+
+[rule.threat.tactic]
+id = "TA0007"
+name = "Discovery"
+reference = "https://attack.mitre.org/tactics/TA0007/"
+
+[[rule.threat.technique]]
+id = "T1046"
+name = "Network Service Discovery"
+reference = "https://attack.mitre.org/techniques/T1046/"

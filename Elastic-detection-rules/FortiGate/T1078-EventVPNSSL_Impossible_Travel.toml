@@ -1,0 +1,36 @@
+
+[rule]
+type = "threshold"
+index = [".ds-logs-fortinet_fortigate.log-*"]
+language = "kuery"
+query = '''
+fortinet.firewall.subtype:"vpn" AND event.code:"0101039424"
+'''
+name = "FortiGate EventVPNSSL Impossible Travel"
+description = "Detect potential impossible travel activity in FortiGate SSL VPN user logins (suspicious geographic locations within a short timeframe)."
+severity = "high"
+risk_score = 73
+tags = ["CustomDetectionRule"]
+references = ["https://community.fortinet.com/t5/FortiGate/Technical-Tip-SSL-VPN-event-logs-when-successfully-connected/ta-p/331206"]
+author = ['mitzep0x1']
+
+[rule.threshold]
+field = ["source.user.name"]
+value = 1
+
+[[rule.threshold.cardinality]]
+field = "source.geo.country_name"
+value = 2
+
+[[rule.threat]]
+framework = "MITRE ATT&CK"
+
+[rule.threat.tactic]
+id = "TA0005"
+name = "Defense Evasion"
+reference = "https://attack.mitre.org/tactics/TA0005/"
+
+[[rule.threat.technique]]
+id = "T1078"
+name = "Valid Accounts"
+reference = "https://attack.mitre.org/techniques/T1078/"
